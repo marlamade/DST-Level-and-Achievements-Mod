@@ -1226,18 +1226,6 @@ function allachivevent:intogamefn(inst)
 			-- Veggie case -> remove all meat dishes
 			if inst.prefab == "wurt" then
 				self:updateVeggieFoodList()
-				self.eatmonsterlasagna = allachiv_eventdata["danding"]
-				self.danding = true
-				self.eatturkeyamount = allachiv_eventdata["danding"]
-				self.eatturkey = true
-				self.eatpepperamount = allachiv_eventdata["eatpepper"]
-				self.eatpepper = true
-				self.eatbaconamount = allachiv_eventdata["eatbacon"]
-				self.eatbacon = true
-				self.eatmoleamount = allachiv_eventdata["eatmole"]
-				self.eatmole = true
-				self.eatfishamount = allachiv_eventdata["eatfish"]
-				self.eatfish = true
 			end
 		end)
     end)
@@ -1276,7 +1264,7 @@ function allachivevent:eatfn(inst)
 			end
 		end
 		--Eat Lasagna
-		if self.danding ~= true and food.prefab == "monsterlasagna" then
+		if self.danding ~= true and (food.prefab == "monsterlasagna" or _G.ThePlayer.prefab == "wurt" and food.prefab == "spoiled_food") then
 			self.eatmonsterlasagna = self.eatmonsterlasagna + 1
 			if self.eatmonsterlasagna >= allachiv_eventdata["danding"] then
 				self.danding = true
@@ -1312,7 +1300,7 @@ function allachivevent:eatfn(inst)
 		end
 		
 		--Eat Fish
-		if self.eatfish ~= true and food.prefab == "fishsticks" then
+		if self.eatfish ~= true and (food.prefab == "fishsticks" or _G.ThePlayer.prefab == "wurt" and (food.prefab == "wormlight" or food.prefab=="wormlight_lesser")) then
 			self.eatfishamount = self.eatfishamount + 1
 			if self.eatfishamount >= allachiv_eventdata["eatfish"] then
 				self.eatfish = true
@@ -1320,7 +1308,7 @@ function allachivevent:eatfn(inst)
 			end
 		end
 		--Eat Turkey
-		if self.eatturkey ~= true and food.prefab == "turkeydinner" then
+		if self.eatturkey ~= true and (food.prefab == "turkeydinner" or _G.ThePlayer.prefab == "wurt" and food.prefab == "shroomcake") then 
 			self.eatturkeyamount = self.eatturkeyamount + 1
 			if self.eatturkeyamount >= allachiv_eventdata["eatturkey"] then
 				self.eatturkey = true
@@ -1328,7 +1316,7 @@ function allachivevent:eatfn(inst)
 			end
 		end
 		--Eat Pepper
-		if self.eatpepper ~= true and food.prefab == "pepperpopper" then
+		if self.eatpepper ~= true and (food.prefab == "pepperpopper" or _G.ThePlayer.prefab == "wurt" and food.prefab == "dragonpie") then
 			self.eatpepperamount = self.eatpepperamount + 1
 			if self.eatpepperamount >= allachiv_eventdata["eatpepper"] then
 				self.eatpepper = true
@@ -1336,7 +1324,7 @@ function allachivevent:eatfn(inst)
 			end
 		end
 		--Eat Bacon
-		if self.eatbacon ~= true and food.prefab == "baconeggs" then
+		if self.eatbacon ~= true and (food.prefab == "baconeggs" or _G.ThePlayer.prefab == "wurt" and food.prefab == "jammypreserves") then
 			self.eatbaconamount = self.eatbaconamount + 1
 			if self.eatbaconamount >= allachiv_eventdata["eatbacon"] then
 				self.eatbacon = true
@@ -1344,7 +1332,7 @@ function allachivevent:eatfn(inst)
 			end
 		end
 		--Eat Guacamole
-		if self.eatmole ~= true and food.prefab == "guacamole" then
+		if self.eatmole ~= true and (food.prefab == "guacamole" or _G.ThePlayer.prefab == "wurt" and food.prefab == "waffles") then
 			self.eatmoleamount = self.eatmoleamount + 1
 			if self.eatmoleamount >= allachiv_eventdata["eatmole"] then
 				self.eatmole = true
